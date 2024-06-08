@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'bio',
+        'image',
         'email',
         'password',
     ];
@@ -50,5 +52,15 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class)->latest();
+    }
+
+    public function getImageURL()
+    {
+        if($this->image)
+        {
+            return url('storage/'. $this->image);
+        }
+        return "https.//api.dicebear.com/6.x/fun-emoji/svg?seed={$this->name}";
+        // return "https://media.discordapp.net/attachments/1063455048778121266/1246824193996226670/Kafka_3.png?ex=665dcb04&is=665c7984&hm=efa8ca890a81e8fc15bebabdd60a3a919446a2705adeb32bd5019487c9193c58&=&format=webp&quality=lossless&width=349&height=349";
     }
 }

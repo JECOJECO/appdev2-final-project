@@ -23,25 +23,17 @@ Route::get('/', function ()
 });
 // Route::get('/', [AuthController::class, 'login'])->name('login');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'submit-story/', 'as' => 'submit.'], function()
-{
-    Route::post('', [StoryController::class, 'store'])->name('store');
-    Route::get('/{story}', [StoryController::class, 'show'])->name('show');
 
-    Route::group(['middleware' => ['auth']], function()
-    {
-        Route::get('/{story}/edit', [StoryController::class, 'edit'])->name('edit');
-        Route::put('/{story}', [StoryController::class, 'update'])->name('update');
-        Route::delete('/{story}', [StoryController::class, 'destroy'])->name('destroy');
-        Route::post('/{story}/comments', [CommentController::class, 'store'])->name('comments.store');
-    });
-
-});
+Route::resource('submit', StoryController::class)->except(['index', 'create', 'show'])->middleware('auth');
+Route::resource('submit', StoryController::class)->only(['show']);
+Route::resource('submit.comments', CommentController::class)->only(['store'])->middleware('auth');
 
 Route::get('/explore', [ExploreController::class, 'search'])->name('explorepage');
 
 Route::resource('users', UserController::class)->only('show', 'edit', 'update')->middleware('auth');
+
+Route::get('profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');

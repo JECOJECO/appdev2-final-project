@@ -28,8 +28,8 @@
                  </li>
             </ul>
         </div>
-        <div class="card-footer text-center py-2">
-            <a class="btn btn-link btn-sm" href="{{ route('profile') }}">View Profile </a>
-        </div>
+        <!-- <div class="card-footer text-center py-2">
+            <a class="btn btn-link btn-sm nav-link" href="{{ route('profile') }}">View Profile </a>
+        </div> -->
     </div>
 </div>

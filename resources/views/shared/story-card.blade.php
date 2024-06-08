@@ -2,21 +2,26 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img src="https://media.discordapp.net/attachments/1063455048778121266/1246824193996226670/Kafka_3.png?ex=665dcb04&is=665c7984&hm=efa8ca890a81e8fc15bebabdd60a3a919446a2705adeb32bd5019487c9193c58&=&format=webp&quality=lossless&width=349&height=349" alt="dp" class="me-1 avatar-sm rounded-circle mx-auto" style="width: 35px;">
+                <img src="{{ $story->user->getImageURL() }}"
+                alt="{{ $story->user->name }}" class="me-1 avatar-sm rounded-circle mx-auto" style="width: 35px;">
                 <div class="ml-3">
                     <h5 class="card-title mb-0">
-                        <a href="#">{{ $story->user->name }}</a>
+                        <a href="{{ route('users.show', $story->user->id) }}">{{ $story->user->name }}</a>
                     </h5>
                 </div>
             </div>
-            <div>
-                <form method="POST" action="{{ route('submit.destroy', $story->id) }}">
-                    @csrf
-                    @method('delete')
-                    <a class="mx-3 small" style="text-decoration:none" href="{{ route('submit.edit', $story->id) }}"> Edit </a>
-                    <a class="small" style="text-decoration:none" href="{{ route('submit.show', $story->id) }}"> View </a>
-                    <button class="btn btn-danger btn-sm ms-2"> X </button>
-                </form>
+            <div class="d-flex">
+                <a href="{{ route('submit.show', $story->id) }}" style="text-decoration:none"> View </a>
+                @auth()
+                    @if (Auth::id() === $story->user_id)
+                        <a class="mx-3 small" style="text-decoration:none" href="{{ route('submit.edit', $story->id) }}"> Edit </a>
+                        <form method="POST" action="{{ route('submit.destroy', $story->id) }}">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger btn-sm ms-2"> X </button>
+                        </form>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>

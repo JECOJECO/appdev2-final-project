@@ -23,7 +23,7 @@
                     <div class="mx-10">
                         @include('shared.success-message')
                         <div class="mt-3">
-                            @include('shared.user-card')
+                            @include('shared.user-edit-card')
                         </div>
                         @foreach ( $stories as $story )
                             <div class="mt-3">
