@@ -21,7 +21,7 @@
                 <div class="col-6">
                     <div class="col-md-8">
                         <div class="container">
-                            <h1>Your Profile Details</h1>
+                            <h1>Profile Details</h1>
                         </div>
                     </div>
                     <div class="mx-10">
