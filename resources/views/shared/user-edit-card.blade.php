@@ -38,7 +38,7 @@
                             <span class="d-block fs-6 text-danger mt-3">{{ $message }}</span>
                         @enderror
                     </div>
-                    <button class="btn btn-sm mb-3">Save</button>
+                    <button class="btn btn-sm mb-3 btn-dark">Save</button>
                     <div class="d-flex justify-content-start">
                         <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-user me-1">
                             </span> 0 Followers </a>

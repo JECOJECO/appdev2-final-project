@@ -22,16 +22,13 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <!-- <a href="{{ route('home') }}" class="nav-link">Home</a>
                         <a href="" class="nav-link">Notifications</a>
                         <a href="" class="nav-link">Bookmarks</a> -->
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -52,9 +49,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('profile') }}" class="dropdown-item nav-link">Profile</a>
-
-
+                                    <a href="{{ route('profile') }}" class="dropdown-item">Profile</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
