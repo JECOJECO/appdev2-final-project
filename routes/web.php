@@ -38,20 +38,21 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::group(['prefix' => 'submit/', 'as' => 'submit.'], function ()
 {
-    // Route::post('', [StoryController::class, 'store'])->name('store');
-    // Route::get('/{submit}', [StoryController::class, 'show'])->name('show');
+    Route::post('', [StoryController::class, 'store'])->name('store');
+    Route::get('/{story}', [StoryController::class, 'show'])->name('show');
 
     Route::group(['middleware' => ['auth']], function () {
-        // Route::get('/{submit}/edit', [StoryController::class, 'edit'])->name('edit');
-        Route::put('/{submit}', [StoryController::class, 'update'])->name('update');
-        // Route::delete('/{submit}', [StoryController::class, 'destroy'])->name('destroy');
-        Route::post('/{submit}/comments', [CommentController::class, 'store'])->name('comments.store');
+        Route::get('/{story}/edit', [StoryController::class, 'edit'])->name('edit');
+        Route::put('/{story}', [StoryController::class, 'update'])->name('update');
+        Route::delete('/{story}', [StoryController::class, 'destroy'])->name('destroy');
+        Route::post('/{story}/comments', [CommentController::class, 'store'])->name('comments.store');
     });
 });
-Route::post('/submit', [StoryController::class, 'store'])->name('submit.store');
-Route::get('/submit/{story}', [StoryController::class, 'show'])->name('submit.show');
-Route::get('/submit/{story}/edit', [StoryController::class, 'edit'])->name('submit.edit');
-Route::delete('/submit/{story}', [StoryController::class, 'destroy'])->name('submit.destroy');
+// Route::post('/submit', [StoryController::class, 'store'])->name('submit.store');
+// Route::get('/submit/{story}', [StoryController::class, 'show'])->name('submit.show');
+// Route::get('/submit/{story}/edit', [StoryController::class, 'edit'])->name('submit.edit');
+// Route::put('/submit/{story}', [StoryController::class, 'update'])->name('submit.update');
+// Route::delete('/submit/{story}', [StoryController::class, 'destroy'])->name('submit.destroy');
 
 // Route::resource('submit', StoryController::class)->except(['index', 'create', 'show'])->middleware('auth');
 // Route::resource('submit.id', StoryController::class)->only(['show']);
