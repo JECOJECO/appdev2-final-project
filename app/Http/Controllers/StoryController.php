@@ -13,7 +13,7 @@ class StoryController extends Controller
         //     'story' => $story
         // ]);
         // dd($story->comments);
-        return view('story.show', compact('story'));
+        return view('story.show',compact('story'));
     }
 
     public function store()

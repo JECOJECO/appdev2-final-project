@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use PharIo\Manifest\Email;
+
 
 class AuthController extends Controller
 {
     public function register()
+    {
+        // return redirect('/verify');
+        return view('auth.register');
+    }
+
+    public function store()
     {
         $validated = request()->validate([
             'name' => 'required|string|max:255',
@@ -24,44 +29,47 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
-
-        return redirect('/login')->with(['user' => $user])->with('success', 'Account Created');
-        // return redirect('/verify');
+        return redirect()->route('login')->with(['user' => $user])->with('success', 'Account Created');
     }
-    public function login(Request $request)
+
+    public function login()
     {
-        $request->validate([
+        // return redirect('/verify');
+        return view('auth.login');
+    }
+
+    public function authenticate()
+    {
+        $validated = request()->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
         ]);
 
-        $credentials = $request->only('email', 'password');
-
-        if (!Auth::attempt($credentials)) {
+        if(auth()->attempt($validated))
+        {
             request()->session()->regenerate();
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+            return redirect()->route('home')->with('success', 'Logged in Successfully');
         }
 
-        $user = $request->user();
-        $token = $user->createToken('auth_token')->plainTextToken;
+        // $user = $request->user();
+        // $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ])->header('Location', '/home');
+        // return response()->json([
+        //     'access_token' => $token,
+        //     'token_type' => 'Bearer',
+        // ])->header('Location', '/home');
+
+        return redirect()->route('login')->withErrors([
+            'email' => "No matching user found",
+
+        ]);
     }
 
     public function logout()
     {
-        // $request->user()->tokens()->delete();
-
-        // return response()->json(['message' => 'Successfully logged out']);
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        // return redirect()->route('/login');
-        return redirect('login');
+        return redirect()->route('login')->with('success', 'Logged out Successfully')
     }
 }

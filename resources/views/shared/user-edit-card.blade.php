@@ -18,7 +18,7 @@
                 <div>
                     @auth()
                         @if (Auth::id() === $user->id)
-                            <a href="{{ route('users.show', $user->id) }}" style="text-decoration:none">Save</a>
+                            <a href="{{ route('users.show', $user->id) }}" style="text-decoration:none">Close</a>
                         @endif
                     @endauth
                 </div>

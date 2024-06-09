@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="d-flex">
-                <a href="{{ route('submit.show', $story->id) }}" style="text-decoration:none"> View </a>
+                <a class="mx-3 small" href="{{ route('submit.show', $story->id) }}" style="text-decoration:none"> View </a>
                 @auth()
                     @if (Auth::id() === $story->user_id)
                         <a class="mx-3 small" style="text-decoration:none" href="{{ route('submit.edit', $story->id) }}"> Edit </a>

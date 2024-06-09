@@ -15,7 +15,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header justify-content-center">
-                    <h1 class="card-title">Login</h1>
+                    <h3 class="text-dark">Register</h3>
                 </div>
                 <div class="card-body">
                     @if (Session::has('error'))
