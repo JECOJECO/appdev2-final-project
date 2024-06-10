@@ -14,9 +14,12 @@
         <body style="background-image: url('https://media.discordapp.net/attachments/1172944013372964925/1249420097039237212/Welcome-art-initial.png?ex=66673ca4&is=6665eb24&hm=bf5a3604a2d296ad176e22cc8f72666218e6df0e19bcf07ee52761d6a1446bea&=&format=webp&quality=lossless&width=550&height=288'); background-size: 200vh; background-repeat: no-repeat;">
             {{-- <div class="bg-image" style="background-image: url('https://media.discordapp.net/attachments/1172944013372964925/1249420097039237212/Welcome-art-initial.png?ex=66673ca4&is=6665eb24&hm=bf5a3604a2d296ad176e22cc8f72666218e6df0e19bcf07ee52761d6a1446bea&=&format=webp&quality=lossless&width=550&height=288'); height: 100vh;"> --}}
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center mt-5">
                         <div class="col-md-10">
                             <h1>Welcome</h1>
+                        </div>
+                        <div class="col-md-10">
+                            <h4>Share your dailies with others.</h4>
                         </div>
                     </div>
                 </div>
